@@ -1,18 +1,7 @@
-## Getting Started
+Hi, I am Elijah is this is what I have been working on in my spare time!
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+My goal is to be able to create a version on Texas Hold-em in my free time by the end of the year (currently as I am writing this it is 9/9/2026)
 
-## Folder Structure
+Currently I have a working dealer state and deck, card, and player classes
 
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+My current goal at the moment is to make a working AI based off Texas Hold-em rules
