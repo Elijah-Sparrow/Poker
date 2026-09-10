@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class DealerState {
     private final String dealer;
     private Card[] communityCards = new Card[5];
@@ -16,6 +18,24 @@ public class DealerState {
         else if (communityCards[4] == null){
             communityCards[4] = cards.take();
         }
+    }
+
+    public void giveBack(Deck cards){
+        for (int i = 0; i < communityCards.length; i++){
+            if (communityCards[i] != null){
+                cards.add(communityCards[i]);
+            }
+        }
+    }
+
+    public ArrayList<Card> getCommunityCards(){
+        ArrayList<Card> comCards = new ArrayList<>();
+        for (int i = 0; i < communityCards.length; i++){
+            if (communityCards[i] != null){
+                comCards.add(communityCards[i]);
+            }
+        }
+        return comCards;
     }
 
     public String toString(){
