@@ -4,4 +4,4 @@ My goal is to be able to create a version on Texas Hold-em in my free time by th
 
 Currently I have a working dealer state and deck, card, and player classes
 
-My current goal at the moment is to make a working AI based off Texas Hold-em rules
+My current goal at the moment is to have a functioning rank method
