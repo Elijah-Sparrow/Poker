@@ -46,6 +46,9 @@ public class Player {
             rank = 8;
             return rank;
         }
+        if (isFour(comCards, hand)){ // check if Four of a Kind
+
+        } 
         if (isFlush(comCards, hand)){ // check if Flush
             rank = 5;
             return rank;
@@ -101,6 +104,38 @@ public class Player {
             
         }
         return true;
+    }
+ 
+    public static boolean isFour(ArrayList<Card> comCards, Card[] hand){
+        int count = 0;
+        if(hand[0].getRank().equals(hand[1].getRank())){
+            count++;
+        }
+        if(count>1){
+            for (int i = 0; i < comCards.size(); i++) {
+                if (hand[0].getRank().equals(comCards.get(i).getRank())){
+                    count++;
+                }
+                if(count==4){
+                    return true;
+                }
+            }
+        }
+        for (int i = 0; i < hand.length; i++) {
+            for (int j = 0; j < comCards.size(); j++) {
+                if(comCards.get(i).getRank().equals(comCards.get(j).getRank())){
+                    count++;
+                }
+                if(count==4){
+                    return true;
+                }
+                
+            }
+            count = 0;
+            
+        }
+        return false;
+        
     }
     /* Ranks:
     High Card: 0
