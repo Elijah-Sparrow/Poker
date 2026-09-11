@@ -47,7 +47,8 @@ public class Player {
             return rank;
         }
         if (isFour(comCards, hand)){ // check if Four of a Kind
-
+            rank = 7; 
+            return rank;
         } 
         if (isFlush(comCards, hand)){ // check if Flush
             rank = 5;
@@ -62,7 +63,8 @@ public class Player {
 
     public static boolean isStraight(ArrayList<Card> comCards, Card[] hand){
         ArrayList<Card> allCards = new ArrayList<>();
-        boolean isStraight = false;
+        int count = 0;
+        int backtrack = 0;
         for (int i = 0; i < hand.length; i++) {
             allCards.add(hand[i]);
         }
@@ -70,15 +72,14 @@ public class Player {
             allCards.add(comCards.get(i));
         }
         sortRank(allCards);
-        for (int i = 0; i < allCards.size() - 4; i++) {
-            if (allCards.get(i).rank + 1 == allCards.get(i + 1).rank &&
-                    allCards.get(i).rank + 2 == allCards.get(i + 2).rank &&
-                    allCards.get(i).rank + 3 == allCards.get(i + 3).rank &&
-                    allCards.get(i).rank + 4 == allCards.get(i + 4).rank){
-                isStraight = true;
+        for (int i = 0; i < allCards.size()-1; i++) {
+            if (allCards.get(backtrack).getRankPos()+1 == allCards.get(i+1).getRankPos()){
+                count++;
+                backtrack = i;
             }
+            
         }
-        return isStraight;
+        return false;
     }
 
     public static void sortRank(ArrayList<Card> cards){
@@ -94,16 +95,33 @@ public class Player {
     }
 
     public static boolean isFlush(ArrayList<Card> comCards, Card[] hand){
-        if (!hand[0].getSuit().equals(hand[1].getSuit())){
-            return false;
+        int flush = 0;
+        if (hand[0].getSuit().equals(hand[1].getSuit())){
+            flush++;
         }
-        for (int i = 0; i < comCards.size(); i++) {
-            if (!comCards.get(i).getSuit().equals(hand[0].getSuit())){
-                return false;
+        if(flush>0){
+            for (int j = 0; j < comCards.size(); j++) {
+                if (comCards.get(j).getSuit().equals(hand[0].getSuit())){
+                    flush++;
+                }
+                if (flush>=5){
+                    return true;
+                }
+            } 
+        }else{
+            for (int i = 0; i < hand.length; i++) { 
+                for (int j = 0; j < comCards.size(); j++) {
+                    if (comCards.get(j).getSuit().equals(hand[i].getSuit())){
+                        flush++;
+                    }
+                    if (flush>=5){
+                        return true;
+                    }
+                }
+                flush = 0; 
             }
-            
         }
-        return true;
+        return false;
     }
  
     public static boolean isFour(ArrayList<Card> comCards, Card[] hand){

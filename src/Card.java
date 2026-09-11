@@ -22,4 +22,8 @@ public class Card {
     public String getSuit(){
         return SUITS[this.suit];
     }
+
+    public int getRankPos(){
+        return rank;
+    }
 }
