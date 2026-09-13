@@ -95,11 +95,11 @@ public class Player {
     }
 
     public static boolean isFlush(ArrayList<Card> comCards, Card[] hand){
-        int flush = 0;
+        int flush = 1;
         if (hand[0].getSuit().equals(hand[1].getSuit())){
             flush++;
         }
-        if(flush>0){
+        if(flush>1){
             for (int j = 0; j < comCards.size(); j++) {
                 if (comCards.get(j).getSuit().equals(hand[0].getSuit())){
                     flush++;
@@ -118,7 +118,7 @@ public class Player {
                         return true;
                     }
                 }
-                flush = 0; 
+                flush = 1; 
             }
         }
         return false;
