@@ -58,6 +58,14 @@ public class Player {
             rank = 4;
             return rank;
         }
+        if (isThree(comCards, hand)){
+            rank = 3;
+            return rank;
+        }
+        if (isPair(comCards, hand)){
+            rank = 1;
+            return rank;
+        }
         return rank;
     }
 
@@ -95,11 +103,11 @@ public class Player {
     }
 
     public static boolean isFlush(ArrayList<Card> comCards, Card[] hand){
-        int flush = 1;
+        int flush = 0;
         if (hand[0].getSuit().equals(hand[1].getSuit())){
             flush++;
         }
-        if(flush>1){
+        if(flush>0){
             for (int j = 0; j < comCards.size(); j++) {
                 if (comCards.get(j).getSuit().equals(hand[0].getSuit())){
                     flush++;
@@ -129,7 +137,7 @@ public class Player {
         if(hand[0].getRank().equals(hand[1].getRank())){
             count++;
         }
-        if(count>1){
+        if(count>0){
             for (int i = 0; i < comCards.size(); i++) {
                 if (hand[0].getRank().equals(comCards.get(i).getRank())){
                     count++;
@@ -145,6 +153,61 @@ public class Player {
                     count++;
                 }
                 if(count==4){
+                    return true;
+                }
+                
+            }
+            count = 0;
+            
+        }
+        return false;
+        
+    }
+
+    public static boolean isThree(ArrayList<Card> comCards, Card[] hand){
+        int count = 1;
+        if(hand[0].getRank().equals(hand[1].getRank())){
+            count++;
+        }
+        if(count>1){
+            for (int i = 0; i < comCards.size(); i++) {
+                if (hand[0].getRank().equals(comCards.get(i).getRank())){
+                    count++;
+                }
+                if(count==3){
+                    return true;
+                }
+            }
+        }else {
+            for (int i = 0; i < hand.length; i++) {
+                for (int j = 0; j < comCards.size(); j++) {
+                    if(comCards.get(i).getRank().equals(comCards.get(j).getRank())){
+                        count++;
+                    }
+                    if(count==3){
+                        return true;
+                    }
+                
+                }
+                count = 0;
+            
+            }
+        }
+        return false;
+        
+    }
+    
+    public static boolean isPair(ArrayList<Card> comCards, Card[] hand){
+        int count = 1;
+        if(hand[0].getRank().equals(hand[1].getRank())){
+            return true;
+        }
+        for (int i = 0; i < hand.length; i++) {
+            for (int j = 0; j < comCards.size(); j++) {
+                if(comCards.get(i).getRank().equals(comCards.get(j).getRank())){
+                    count++;
+                }
+                if(count==2){
                     return true;
                 }
                 
